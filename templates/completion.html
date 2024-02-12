@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}q and a{%endblock%}
+
+{% block content%}
+<h1>good job you completed the survey</h1>
+<p>your answers to questions</p>
+<ul>
+    {% for responses in survey_responses %}
+      <li>{{responses}}</li>
+    {%endfor%}
+</ul>
+{%endblock%}

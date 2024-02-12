@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}survey menu{%endblock%}
+
+{% block content%} 
+
+<div>
+    
+    <!--<form action="/questions"method="POST">-->
+       
+        {% for key, survey in surveys.items() %}
+        
+           <!--ISSUE IS THE FIRST SURVEY IS BEING CREATED WITH OUTER FORM INSTEAD OF INNER WITH INDEX THE SECOND ONE IS BEING CREATED WITH INNER FORM-->
+        <div>
+            <p>{{survey.title}}</p>
+            <p>{{survey.instructions}}</p>
+            <ul>
+            {% for question in survey.questions %}
+               <li>{{question.question}}</li>
+            {%endfor%}
+            </ul>
+            
+        </div>
+        <form method="POST"action="/start_survey">
+            <input type="radio" name="survey_key" value="{{key}}">
+            <button type="submit">start survey</button>
+        </form>
+        {%endfor%}
+        <!--CAN INCLUDE SOMETHING TO BE ABLE TO UNSELECT BUTTONS-->
+    <!--</form>-->
+    
+  </div>
+ 
+  <!--<div>
+    
+    <form action="/questions"method="POST">
+        {% set question_idx = 0%}
+        {% for survey in surveys%}
+        
+        <form method="POST"action="/questions/{{question_idx}}">-->
+           <!--ISSUE IS THE FIRST SURVEY IS BEING CREATED WITH OUTER FORM INSTEAD OF INNER WITH INDEX THE SECOND ONE IS BEING CREATED WITH INNER FORM-->
+        <!--<div>
+            <p>{{survey.title}}</p>
+            <p>{{survey.instructions}}</p>
+            <ul>
+            {% for question in survey.questions %}
+               <li>{{question.question}}</li>
+            {%endfor%}
+            </ul>
+            <button>start survey</button>
+        </div>
+        
+        </form>
+        
+        {% set question_idx = question_idx + 1 %}
+        {%endfor%}
+    </form>
+    
+  </div>-->
+
+{%endblock%}
